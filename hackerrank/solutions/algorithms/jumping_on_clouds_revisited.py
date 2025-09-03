@@ -4,19 +4,32 @@ import random
 import re
 import sys
 
+from hackerrank.testcases.test_algorithm.test_picking_numbers import test_pickingNumbers
+
+
 def jumpingOnClouds(c, k):
     n=100
-    a = []
-    for i in c:
-        a.append(i)
-        if len(a)%k == 0 and len(a) >= len(c):
+    temp = 0
+    a=[c[0]]
+    for i in range(len(c)):
+        if (temp+k) > len(c):
+            temp -= len(c)
+        temp1 = (temp + k) % n
+        if (temp1+k) == len(c)+1:
+            a.append(c[temp1])
             a.append(c[0])
             break
-    for j in range(0,len(a),k):
-        if a[j] == 0:
-            n-=1
         else:
-            n-=3
+            a.append(c[temp1])
+            temp += k
+            continue
+    for j in range(len(a)):
+        if a[j] == 0:
+            n -= 1
+        elif a[j] == 1 and j == 0:
+            n -= 2
+        else:
+            n -= 3
     return n
 
-jumpingOnClouds([0, 0, 1, 0, 0, 1, 1, 0],2)
+jumpingOnClouds([1,1,1,0,1,1,0,0,0,0],3)
