@@ -1,6 +1,7 @@
 #https://leetcode.com/problems/add-two-numbers/
 
 solutions:
+#using nested list operations
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         num1 = ""
